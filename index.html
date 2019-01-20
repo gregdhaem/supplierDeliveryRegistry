@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Registre Livraison Fournisseur</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" 
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" 
+    crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/index.css">
+</head>
+<body>
+
+    <h1>Collège François Mauriac Houdan<br>Registre des livraisons et entrées fournisseurs</h1>
+
+    <div class="sdr-table-container" id="sdrTableContainer">
+        <div class="sdr-table-row">
+            <div class="sdr-table-column sdr-date sdr-header">Date</div>
+            <div class="sdr-table-column sdr-time sdr-header">Heure</div>
+            <div class="sdr-table-column sdr-company sdr-header">Société</div>
+            <div class="sdr-table-column sdr-service sdr-header">Service</div>
+            <div class="sdr-table-column sdr-comment sdr-header">Commentaires</div>
+            <div class="sdr-table-column sdr-add-entry sdr-header" id="addEntry">+</div>
+            <div class="sdr-table-column sdr-export sdr-header" id="export"><i class="fas fa-upload"></i></div>
+        </div>
+        <span id="tableBody"></span>
+    </div>
+
+    <div class="disable-modal" id="backdrop"></div>
+    <div class="disable-modal" id="newEntryModal">
+        <h2>Ajoutez / modifiez une nouvelle entrée</h2>
+
+        <label for="date">Date</label>
+        <input type="date" name="date" id="date">
+
+        <label for="time">Heure</label>
+        <input type="time" name="time" id="time">
+
+        <label for="company">Société</label>
+        <input type="text" name="company" placeholder="Nom de la société ..." id="company">
+        
+        <label for="service">Services</label>
+        <input type="text" name="service" placeholder="Nom du service ..." id="service">
+        
+        <label for="comment">Commentaires</label>
+        <input type="textarea" name="comment" placeholder="Ajoutez un commentaire ..." id="comment">
+
+        <button id="newEntryCancelBtn"><i class="fas fa-undo fa-2x"></i></button>
+        <button id="newEntrySubmitBtn"><i class="far fa-save fa-2x"></i></button>
+    </div>
+
+    <!-- Scripts -->
+    <script src="scripts/index.js"></script>
+</body>
+</html>
