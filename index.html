@@ -27,9 +27,9 @@
         <span id="tableBody"></span>
     </div>
 
-    <div class="disable-modal" id="backdrop"></div>
-    <div class="disable-modal" id="newEntryModal">
-        <h2>Ajoutez / modifiez une nouvelle entrée</h2>
+    <div class="disable-model" id="backdrop"></div>
+    <div class="disable-model" id="newEntryModel">
+        <h2>Ajoutez / modifiez une entrée</h2>
 
         <label for="date">Date</label>
         <input type="date" name="date" id="date">
@@ -38,10 +38,10 @@
         <input type="time" name="time" id="time">
 
         <label for="company">Société</label>
-        <input type="text" name="company" placeholder="Nom de la société ..." id="company">
+        <input type="text" name="company" placeholder="Nom de la société ..." id="company" required>
         
         <label for="service">Services</label>
-        <input type="text" name="service" placeholder="Nom du service ..." id="service">
+        <input type="text" name="service" placeholder="Nom du service ..." id="service" required>
         
         <label for="comment">Commentaires</label>
         <input type="textarea" name="comment" placeholder="Ajoutez un commentaire ..." id="comment">

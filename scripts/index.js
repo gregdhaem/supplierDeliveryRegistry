@@ -5,27 +5,28 @@ let sdrTable;
 
 let sdrTableDemo = [
     {
-        'date': '28/01/2019',
+        'date': '2019-01-14',
         'time': '11:32',
         'company': 'Sodexo',
         'service': 'Cuisine',
         'comment': 'Livraison matériel'
     },
     {
-        'date': '29/01/2019',
+        'date': '2019-01-15',
         'time': '12:32',
         'company': 'UPS',
         'service': 'Gestion',
         'comment': 'Livraison'
     },
     {
-        'date': '30/01/2019',
+        'date': '2019-01-15',
         'time': '15:32',
         'company': 'Koné',
         'service': 'Entretien',
         'comment': 'Dépannage ascenseur'
     }
 ];
+
 
 let enableDisableDataInput = (option) => {
     let editEntryDate = document.getElementById('date');
@@ -37,7 +38,6 @@ let enableDisableDataInput = (option) => {
         editEntryDate.disabled = true;
 
 };
-
 
 
 let refreshDOMTable = () => {
@@ -101,7 +101,7 @@ let refreshDOMTable = () => {
         newTableBody.appendChild(currentRow);
     }
 
-    let enableDisableNewEntryModal = (option) => {
+    let enableDisableNewEntryModel = (option) => {
 
         let newEntryDate = document.getElementById('date');
         let newEntryTime = document.getElementById('time');
@@ -115,11 +115,11 @@ let refreshDOMTable = () => {
         newEntryService.value = '';
         newEntryComment.value = '';
 
-        let newEntryModal = document.getElementById('newEntryModal');
+        let newEntryModel = document.getElementById('newEntryModel');
         let backDrop = document.getElementById('backdrop');
 
-        newEntryModal.className = `${option}-modal`;
-        backDrop.className = `${option}-modal`;
+        newEntryModel.className = `${option}-model`;
+        backDrop.className = `${option}-model`;
     }
 
     let addNewEntryBtn = document.getElementById('addEntry');
@@ -140,29 +140,28 @@ let refreshDOMTable = () => {
         let newEntryComment = document.getElementById('comment').value.trim();
 
         if (newEntryDate === '')
-            newEntryDate.className = 'input-err';
+            document.getElementById('date').className = 'input-err';
         else 
-            newEntryDate.className = '';
+            document.getElementById('date').className = '';
 
         if (newEntryTime === '')
-            newEntryTime.className = 'input-err';
+            document.getElementById('time').className = 'input-err';
         else 
-            newEntryTime.className = '';
+            document.getElementById('time').className = '';
 
             if (newEntryCompany === '')
-            newEntryCompany.className = 'input-err';
+            document.getElementById('company').className = 'input-err';
         else 
-            newEntryCompany.className = '';
+            document.getElementById('company').className = '';
 
             if (newEntryService === '')
-            newEntryService.className = 'input-err';
+            document.getElementById('service').className = 'input-err';
         else 
-            newEntryService.className = '';
+            document.getElementById('service').className = '';
 
         if (newEntryDate !== '' && newEntryTime !== '' && newEntryCompany !== '' && newEntryService !== '') {
             let newEntryId = (sdrTableKeys.length);
-            console.log(newEntryId);
-            console.log(sdrTableKeys.length);
+
             sdrTable[newEntryId] = {
                 'date' : newEntryDate,
                 'time' : newEntryTime,
@@ -170,38 +169,54 @@ let refreshDOMTable = () => {
                 'service' : newEntryService,
                 'comment' : newEntryComment
             }
+
             localStorage.setItem(tableKey, JSON.stringify(sdrTable));
-            enableDisableNewEntryModal('disable');
+            enableDisableNewEntryModel('disable');
             refreshDOMTable();
+
+            // TODO manager la date dd/mm/yyyy
+            // var curDate = new Date(Date.now());
+            // var dateOptions = { year: 'numeric', month: 'numeric', day: 'numeric' };
+            // console.log(curDate.toLocaleDateString('fr-FR', dateOptions));
+            // console.log(curDate.toLocaleTimeString('fr-FR'));
+    
+            // TODO - Envisager d'utiliser splice() pour ajouter une entrée dans l'array
+            // let test = [];
+            // test.splice(newEntryId, 0, {
+            //     'date' : newEntryDate,
+            //     'time' : newEntryTime,
+            //     'company' : newEntryCompany,
+            //     'service' : newEntryService,
+            //     'comment' : newEntryComment
+            // });
+            // console.log(test);
         }
 
     });
 
     newEntryCancelBtn.addEventListener('click', () => {
-        enableDisableNewEntryModal('disable');
+        enableDisableNewEntryModel('disable');
     });
 
     addNewEntryBtn.addEventListener('click', () => {
-        enableDisableNewEntryModal('enable');
+        enableDisableNewEntryModel('enable');
     });
 
     for (let i = 0; i < editBtns.length; i++) {
         editBtns[i].addEventListener('click', ($event) => {
             let dateToEdit = $event.target.parentElement.children[0].innerText;
-            console.log(dateToEdit);
+            
             let timeToEdit = $event.target.parentElement.children[1].innerText;
-            console.log(timeToEdit);
+            
             let companyToEdit = $event.target.parentElement.children[2].innerText;
-            console.log(companyToEdit);
+            
             let serviceToEdit = $event.target.parentElement.children[3].innerText;
-            console.log(serviceToEdit);
+            
             let commentToEdit = $event.target.parentElement.children[4].innerText;
-            console.log(commentToEdit);
-            console.log($event.target.parentElement)
+            
+            enableDisableNewEntryModel('enable');
 
-            enableDisableNewEntryModal('enable');
-
-            let editEntryDate = document.getElementById('date').placeholder;
+            let editEntryDate = document.getElementById('date');
             let editEntryTime = document.getElementById('time');
             let editEntryCompany = document.getElementById('company');
             let editEntryService = document.getElementById('service');
@@ -213,7 +228,7 @@ let refreshDOMTable = () => {
             editEntryService.value = serviceToEdit;
             editEntryComment.value = commentToEdit;
 
-            //enableDisableDataInput('disable');
+            enableDisableDataInput('disable');
         });
     };
 
@@ -234,8 +249,6 @@ let refreshDOMTable = () => {
                 'service' : serviceToDelete,
                 'comment' : commentToDelete
             }
-
-            console.log(entryTableToDelete);
 
             let isSure = window.confirm("Etes vous sûr de vouloir effacer cette entrée ?");
 
@@ -261,8 +274,9 @@ let deleteEntryFromTable = (entry) => {
         }
     }
     sdrTable = tmpTable;
-    console.log(tmpTable);
+
     localStorage.setItem(tableKey, JSON.stringify(sdrTable));
+
     refreshDOMTable();
 }
 
@@ -274,9 +288,7 @@ let init = () => {
         sdrTable = sdrTableDemo;
         localStorage.setItem(tableKey, JSON.stringify(sdrTable));
     }
-    console.log(sdrTable);
-    console.log(sdrTable.length)
-    console.log(sdrTable[0]);
+
     refreshDOMTable();
 }
 

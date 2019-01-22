@@ -14,10 +14,17 @@
     font-family: 'Open Sans', sans-serif;
   }
   
-  h1, h2 {
+  h1 {
     font-family: sans-serif;
     text-align: center;
     font-size: 3em;
+    text-shadow: 3px 3px 3px black;
+  }
+
+  h2 {
+    font-family: sans-serif;
+    text-align: center;
+    font-size: 2em;
     text-shadow: 3px 3px 3px black;
   }
 
@@ -60,7 +67,7 @@
 
   .sdr-comment {
     flex-basis: 15%;
-    /* flex-grow: 2; */
+ 
   }
   .sdr-add-entry {
     flex-basis: 20%;
@@ -89,7 +96,7 @@
     cursor: pointer;
   }
 
-  #newEntryModal {
+  #newEntryModel {
     width: 500px;
     padding: 0.7em;
     border-radius: 5px;
@@ -100,7 +107,7 @@
     background-color: #a49f93;
   }
 
-  #newEntryModal input {
+  #newEntryModel input {
     display: block;
     margin-bottom: 1em;
     padding: 0.5em;
@@ -110,6 +117,7 @@
 
   .input-err {
     background-color: red;
+    /* border: 2px solid red; */
   }
 
   #backdrop {
@@ -145,11 +153,11 @@
     padding: 0.8em;
   }
 
-  .disable-modal {
+  .disable-model {
     visibility: hidden;
   }
 
-  .enable-modal {
+  .enable-model {
     visibility: visible;
   }
 
